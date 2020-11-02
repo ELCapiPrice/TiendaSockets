@@ -2,7 +2,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Servidor {
+public class TienditaSocketsServer {
   public static String relativePath = System.getProperty("user.dir"); //Ruta relativa de nuestro directorio
 
   public static void main(String[] args) {
