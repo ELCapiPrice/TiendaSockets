@@ -4,7 +4,8 @@ import java.net.Socket;
 
 public class TienditaSocketsServer {
   public static String relativePath = System.getProperty("user.dir"); //Ruta relativa de nuestro directorio
-
+  String stock [] = {"ZAPATOS", "CONSOLAS"};
+  
   public static void main(String[] args) {
     final int port = 25001;//Puerto de nuestro Servidor ( puede ser del 1 al 2^16)
 
@@ -26,7 +27,9 @@ public class TienditaSocketsServer {
         OutputStream os = cliente.getOutputStream(); //Asociamos el stream con el cliente
         OutputStreamWriter osr = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osr); //El BufferedWriter se usa para escribir del servidor al cliente.
-
+        
+        System.out.println("Hola desde servidor ");
+        bw.write("Hola");
 
 
 
