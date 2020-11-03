@@ -7,7 +7,6 @@ public class Articulos {
     nuevoArticulo(nombre, precio, stock, descuento , imagen);
   }
 
-
   private void nuevoArticulo(String nombre, double precio, int stock, int descuento , String imagen){
     this.nombre = nombre;
     this.stock = stock;
@@ -52,9 +51,4 @@ public class Articulos {
   public String getImagen(){
     return this.imagen;
   }
-
-
-
-
-
 }

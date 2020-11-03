@@ -40,6 +40,15 @@ public class TienditaSocketsServer {
         OutputStreamWriter osr = new OutputStreamWriter(os);
         BufferedWriter bw = new BufferedWriter(osr); //El BufferedWriter se usa para escribir del servidor al cliente.
 
+        //Le enviamos al cliente el número de articulos disponibles
+        bw.write(7);
+        bw.newLine();
+        bw.flush();
+
+        //Le enviamos los datos de los items al cliente
+        for(int i=0;i<7;i++){
+
+        }
 
       } //FIN FOREVER
     } catch (IOException e) {
