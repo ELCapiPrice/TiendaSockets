@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 public class TienditaSocketsServer {
   public static String relativePath = System.getProperty("user.dir"); //Ruta relativa de nuestro directorio
-
+  String stock [] = {"ZAPATOS", "CONSOLAS"};
+  
   public static void main(String[] args) {
     final int port = 25001;//Puerto de nuestro Servidor ( puede ser del 1 al 2^16)
 
@@ -49,6 +50,9 @@ public class TienditaSocketsServer {
         for(int i=0;i<7;i++){
 
         }
+        
+        System.out.println("Hola desde servidor ");
+        bw.write("Hola");
 
       } //FIN FOREVER
     } catch (IOException e) {
