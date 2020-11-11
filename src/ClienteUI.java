@@ -6,22 +6,34 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.net.Socket;
+import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
 
 /**
  *
  * @author nschu
  */
 public class ClienteUI extends javax.swing.JFrame {
+    //Aqui va a ir la interfaz del usuario
+    static final String IP = "localhost";
+    static final int PUERTO = 25001;
+    static Socket cl = null;
+    static ArrayList<Articulos> articulos = new ArrayList<>();
 
     /**
      * Creates new form ClienteUI
      */
     public ClienteUI() {
-        
+
+        estableceConexion();
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         cargarImagenes();
+
     }
 
     /**
@@ -100,40 +112,40 @@ public class ClienteUI extends javax.swing.JFrame {
         jLabel7.setText("Stock: ");
 
         titulo1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo1.setText("1000  Recetas de Tomate");
+        titulo1.setText(articulos.get(0).getNombre());
 
         titulo2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo2.setText("La Biblia del Tomate");
+        titulo2.setText(articulos.get(1).getNombre());
 
         titulo3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo3.setText("Tomate en Polvo para Cocinar");
+        titulo3.setText(articulos.get(2).getNombre());
 
         titulo4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo4.setText("Tomate en Polvo para cocinar");
+        titulo4.setText(articulos.get(3).getNombre());
 
         titulo5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo5.setText("Tomate Entero Pelado");
+        titulo5.setText(articulos.get(4).getNombre());
 
         titulo6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo6.setText("Jugo de Tomate");
+        titulo6.setText(articulos.get(5).getNombre());
 
         stock1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        stock1.setText("100");
+        stock1.setText(Integer.toString(articulos.get(0).getStock()));
 
         stock2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        stock2.setText("100");
+        stock2.setText(Integer.toString(articulos.get(1).getStock()));
 
         stock3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        stock3.setText("100");
+        stock3.setText(Integer.toString(articulos.get(2).getStock()));
 
         stock4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        stock4.setText("100");
+        stock4.setText(Integer.toString(articulos.get(3).getStock()));
 
         stock5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        stock5.setText("100");
+        stock5.setText(Integer.toString(articulos.get(4).getStock()));
 
         stock6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        stock6.setText("100");
+        stock6.setText(Integer.toString(articulos.get(5).getStock()));
 
         boton1Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -454,33 +466,33 @@ public class ClienteUI extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarImagenes() {
-        ImageIcon imagen1 = new ImageIcon(getClass().getResource("/imagenes/1000RecetasDeTomate.jpg"));
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource(articulos.get(0).getImagen()));
         Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(imagen1Producto.getWidth(), imagen1Producto.getHeight(), Image.SCALE_SMOOTH));
         imagen1Producto.setIcon(fondo1);
         this.repaint();
         
-        ImageIcon imagen2 = new ImageIcon(getClass().getResource("/imagenes/LaBibliaDelTomate.jpg"));
+        ImageIcon imagen2 = new ImageIcon(getClass().getResource(articulos.get(1).getImagen()));
         Icon fondo2 = new ImageIcon(imagen2.getImage().getScaledInstance(imagen2Producto.getWidth(), imagen2Producto.getHeight(), Image.SCALE_SMOOTH));
         imagen2Producto.setIcon(fondo2);
         this.repaint();
         
-        ImageIcon imagen3 = new ImageIcon(getClass().getResource("/imagenes/TomateEnPolvoCocinar.jpg"));
+        ImageIcon imagen3 = new ImageIcon(getClass().getResource(articulos.get(2).getImagen()));
         Icon fondo3 = new ImageIcon(imagen3.getImage().getScaledInstance(imagen3Producto.getWidth(), imagen3Producto.getHeight(), Image.SCALE_SMOOTH));
         imagen3Producto.setIcon(fondo3);
         this.repaint();
         
         
-        ImageIcon imagen4 = new ImageIcon(getClass().getResource("/imagenes/TomateEnPolvoGelatina.jpg"));
+        ImageIcon imagen4 = new ImageIcon(getClass().getResource(articulos.get(3).getImagen()));
         Icon fondo4 = new ImageIcon(imagen4.getImage().getScaledInstance(imagen4Producto.getWidth(), imagen4Producto.getHeight(), Image.SCALE_SMOOTH));
         imagen4Producto.setIcon(fondo4);
         this.repaint();
         
-        ImageIcon imagen5 = new ImageIcon(getClass().getResource("/imagenes/TomateEnteroPelado.jpg"));
+        ImageIcon imagen5 = new ImageIcon(getClass().getResource(articulos.get(4).getImagen()));
         Icon fondo5 = new ImageIcon(imagen5.getImage().getScaledInstance(imagen5Producto.getWidth(), imagen5Producto.getHeight(), Image.SCALE_SMOOTH));
         imagen5Producto.setIcon(fondo5);
         this.repaint();
         
-        ImageIcon imagen6 = new ImageIcon(getClass().getResource("/imagenes/ZumoDeTomatejpg.jpg"));
+        ImageIcon imagen6 = new ImageIcon(getClass().getResource(articulos.get(5).getImagen()));
         Icon fondo6 = new ImageIcon(imagen6.getImage().getScaledInstance(imagen6Producto.getWidth(), imagen6Producto.getHeight(), Image.SCALE_SMOOTH));
         imagen6Producto.setIcon(fondo6);
         this.repaint();
@@ -527,4 +539,51 @@ public class ClienteUI extends javax.swing.JFrame {
         this.repaint();
         
     }
+
+    private static void estableceConexion(){
+        try{
+            cl = new Socket(IP, PUERTO);
+            System.out.println("Conexion con servidor establecida.. recibiendo datos");
+
+            InputStream is = cl.getInputStream(); //Asociamos el stream con el cliente
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr); //El BufferedReader se usa para leer del cliente al servidor.
+
+            OutputStream os = cl.getOutputStream(); //Asociamos el stream con el cliente
+            OutputStreamWriter osr = new OutputStreamWriter(os);
+            BufferedWriter bw = new BufferedWriter(osr); //El BufferedWriter se usa para escribir del servidor al cliente.
+
+            //Recibimos el número de artículos disponibles
+            int numeroArticulos = br.read();
+            System.out.println("Número de articulos: "+ numeroArticulos);
+
+
+            for(int i=0;i<numeroArticulos;i++){
+                //br.readLine();
+                Articulos item = new Articulos(br.readLine(),Double.parseDouble(br.readLine()),br.read(),br.read(),br.readLine());
+                //Leemos los datos de los articulos
+                //String nombre = br.readLine();//Nombre del item
+                //double precio = Double.parseDouble(br.readLine());//Precio del item
+                //int descuento = br.read();//Descuento del item
+                //int stock = br.read();//Stock del item
+                //String image = br.readLine();//Imagen del item
+                //item.setNombre(nombre);
+                //item.setPrecio(precio);
+                //item.setDescuento(descuento);
+                //item.setStock(stock);
+                //item.setImagen(image);
+                articulos.add(item);
+                //System.out.println(articulos.get(i).getNombre());
+            }
+            //System.out.println(articulos.size());
+            for(int i=0;i<6;i++){
+                System.out.println(articulos.get(i).getNombre());
+            }
+
+
+        } catch(IOException E){
+            E.printStackTrace();
+        }
+    }
+
 }

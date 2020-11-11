@@ -26,7 +26,7 @@ public class TienditaSocketsCliente {
       for(int i=0;i<numeroArticulos;i++){
         //Leemos los datos de los articulos
         String nombre = br.readLine();
-        int precio = br.read();
+        double precio = Double.parseDouble(br.readLine());
         int stock = br.read();
         String imagen = br.readLine();
       }

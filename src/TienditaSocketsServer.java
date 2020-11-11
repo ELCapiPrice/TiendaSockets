@@ -15,17 +15,25 @@ public class TienditaSocketsServer {
       servidor.setReuseAddress(true); //Esto es para que no se congele 15 segundos algo asi xd
       System.out.println("Servidor Iniciado con exito en el puerto: " + servidor.getLocalPort());
 
-      Articulos item1 = new Articulos("1000 recetas de tomate",500,14,0,"URLimagen");
-      Articulos item2 = new Articulos("La biblia del tomate",1000,26,20,"URLimagen");
-      Articulos item3 = new Articulos("Tomate en polvo para rebozar 1kg",80,84,0,"ULRimagen");
-      Articulos item4 = new Articulos("Tomate en polvo para gelatinas 1kg",50,26,0,"URLimagen");
-      Articulos item5 = new Articulos("Tomate frito triturado 1kg",75,13,0,"URLimagen");
-      Articulos item6 = new Articulos("Tomate entero pelado 250gr",15,55,0,"URLimagen");
-      Articulos item7 = new Articulos("Zumo de tomate 2L pack de 3",300,77,50,"URLimagen");
-      ArrayList<Articulos> listaArticulos = new ArrayList<Articulos>();
-      System.out.println(item1.getNombre());
-      item1.setDescuento(50);
-      System.out.println("Precio: "+ item1.getPrecio());
+      Articulos item1 = new Articulos("1000 recetas de tomate",500,14,0,"/imagenes/1000RecetasDeTomate.jpg");
+      Articulos item2 = new Articulos("La biblia del tomate",1000,26,20,"/imagenes/LaBibliaDelTomate.jpg");
+      Articulos item3 = new Articulos("Tomate en polvo para rebozar 1kg",80,84,0,"/imagenes/TomateEnPolvoCocinar.jpg");
+      Articulos item4 = new Articulos("Tomate en polvo para gelatinas 1kg",50,26,0,"/imagenes/TomateEnPolvoGelatina.jpg");
+      //Articulos item7 = new Articulos("Tomate frito triturado 1kg",75,13,0,"/imagenes/TomateEnteroPelado.jpg");
+      Articulos item5 = new Articulos("Tomate entero pelado 250gr",15,55,0,"/imagenes/TomateEnteroPelado.jpg");
+      Articulos item6 = new Articulos("Zumo de tomate 2L pack de 3",300,77,50,"/imagenes/ZumoDeTomatejpg.jpg");
+
+      ArrayList<Articulos> items = new ArrayList<Articulos>();
+      items.add(item1);
+      items.add(item2);
+      items.add(item3);
+      items.add(item4);
+      items.add(item5);
+      items.add(item6);
+
+      for(int i=0;i<6;i++){
+        System.out.println(items.get(i).getNombre());
+      }
 
       for(;;) {
         Socket cliente = servidor.accept(); // Esperamos a que algun cliente de conecte al servidor.
@@ -42,17 +50,31 @@ public class TienditaSocketsServer {
         BufferedWriter bw = new BufferedWriter(osr); //El BufferedWriter se usa para escribir del servidor al cliente.
 
         //Le enviamos al cliente el número de articulos disponibles
-        bw.write(7);
-        bw.newLine();
-        bw.flush();
+        bw.write(6);
+        //bw.newLine();
+        //bw.flush();
 
         //Le enviamos los datos de los items al cliente
-        for(int i=0;i<7;i++){
-
+        for(int i=0;i<6;i++){
+          bw.write(items.get(i).getNombre());//Nombre del item
+          bw.newLine();
+          bw.flush();
+          String precio = Double.toString(items.get(i).getPrecio());
+          bw.write(precio);//Precio del item
+          bw.newLine();
+          bw.flush();
+          bw.write(items.get(i).getStock());//Stock del item
+          //bw.newLine();
+          //bw.flush();
+          bw.write(items.get(i).getDescuento());//Descuento del item
+          //bw.newLine();
+          //bw.flush();
+          bw.write(items.get(i).getImagen());//Imagen del item
+          bw.newLine();
+          bw.flush();
         }
         
         System.out.println("Hola desde servidor ");
-        bw.write("Hola");
 
       } //FIN FOREVER
     } catch (IOException e) {
