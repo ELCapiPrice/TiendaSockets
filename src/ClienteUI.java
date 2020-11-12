@@ -27,6 +27,14 @@ public class ClienteUI extends javax.swing.JFrame {
     public int [] noArticulos = new int[6];
     public  ArrayList<Integer> articulos1 = new ArrayList<>();
     int  p0=1,p2=1,p3=1,p4=1,p5=1,p1=1,p6=1;
+    int noStock0,noStock1,noStock2,noStock3,noStock4,noStock5;
+    static BufferedWriter bw = null;
+
+    static JFrame f;
+    static void OptionPaneStockError(){
+        f=new JFrame();
+        JOptionPane.showMessageDialog(f,"Ya no hay stock para seguir comprando.","Se agoto el stock",JOptionPane.WARNING_MESSAGE);
+    }
 
     /**
      * Creates new form ClienteUI
@@ -38,8 +46,6 @@ public class ClienteUI extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         cargarImagenes();
-
-
 
     }
 
@@ -131,22 +137,22 @@ public class ClienteUI extends javax.swing.JFrame {
         jLabel7.setText("Stock: ");
 
         titulo1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo1.setText("1000  Recetas de Tomate");
+        titulo1.setText(articulos.get(0).getNombre());
 
         titulo2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo2.setText("La Biblia del Tomate");
+        titulo2.setText(articulos.get(1).getNombre());
 
         titulo3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo3.setText("Tomate en Polvo para Cocinar");
+        titulo3.setText(articulos.get(2).getNombre());
 
         titulo4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo4.setText("Tomate en Polvo para cocinar");
+        titulo4.setText(articulos.get(3).getNombre());
 
         titulo5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo5.setText("Tomate Entero Pelado");
+        titulo5.setText(articulos.get(4).getNombre());
 
         titulo6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        titulo6.setText("Jugo de Tomate");
+        titulo6.setText(articulos.get(5).getNombre());
 //"$ "+ Double.toString(articulos.get(0).getPrecio())
         //Integer.toString(articulos.get(0).getStock()
         stock1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -170,55 +176,108 @@ public class ClienteUI extends javax.swing.JFrame {
         boton1Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton1ComprarActionPerformed(evt);
-                noArticulos[0]=p0;
-                System.out.println("Click "+p0);
-                p0++;
-
+                if(articulos.get(0).getStock() > 0){
+                    noArticulos[0]=p0;
+                    articulos.get(0).setStock(articulos.get(0).getStock() - 1);
+                    System.out.println("Stock: "+articulos.get(0).getStock());
+                    stock1.setText(Integer.toString(articulos.get(0).getStock()));
+                    p0++;
+                    System.out.println("Click "+p0);
+                }
+                else{
+                    System.out.println("No hay suficiente stock");
+                    OptionPaneStockError();
+                }
             }
         });
 
         boton2Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton2ComprarActionPerformed(evt);
-                noArticulos[1]=p1;
-                p1++;
-                System.out.println("Click "+p1);
+                if(articulos.get(1).getStock() > 0){
+                    noArticulos[1]=p1;
+                    articulos.get(1).setStock(articulos.get(1).getStock() - 1);
+                    System.out.println("Stock: "+articulos.get(1).getStock());
+                    stock2.setText(Integer.toString(articulos.get(1).getStock()));
+                    p1++;
+                    System.out.println("Click "+p1);
+                }
+                else{
+                    System.out.println("No hay suficiente stock");
+                    OptionPaneStockError();
+                }
             }
         });
 
         boton3Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton3ComprarActionPerformed(evt);
-                noArticulos[2]=p2;
-                p2++;
-                System.out.println("Click "+p2);
+                if(articulos.get(2).getStock() > 0){
+                    noArticulos[2]=p2;
+                    articulos.get(2).setStock(articulos.get(2).getStock() - 1);
+                    System.out.println("Stock: "+articulos.get(2).getStock());
+                    stock3.setText(Integer.toString(articulos.get(2).getStock()));
+                    p2++;
+                    System.out.println("Click "+p2);
+                }
+                else{
+                    System.out.println("No hay suficiente stock");
+                    OptionPaneStockError();
+                }
             }
         });
 
         boton4Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton4ComprarActionPerformed(evt);
-                noArticulos[3]=p3;
-                p3++;
-                System.out.println("Click "+p3);
+                if(articulos.get(3).getStock() > 0){
+                    noArticulos[3]=p3;
+                    articulos.get(3).setStock(articulos.get(3).getStock() - 1);
+                    System.out.println("Stock: "+articulos.get(3).getStock());
+                    stock4.setText(Integer.toString(articulos.get(3).getStock()));
+                    p3++;
+                    System.out.println("Click "+p3);
+                }
+                else{
+                    System.out.println("No hay suficiente stock");
+                    OptionPaneStockError();
+                }
             }
         });
 
         boton5Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton5ComprarActionPerformed(evt);
-                noArticulos[4]=p4;
-                p4++;
-                System.out.println("Click "+p4);
+                if(articulos.get(4).getStock() > 0){
+                    noArticulos[4]=p4;
+                    articulos.get(4).setStock(articulos.get(4).getStock() - 1);
+                    System.out.println("Stock: "+articulos.get(4).getStock());
+                    stock5.setText(Integer.toString(articulos.get(4).getStock()));
+                    p4++;
+                    System.out.println("Click "+p4);
+                }
+                else{
+                    System.out.println("No hay suficiente stock");
+                    OptionPaneStockError();
+                }
             }
         });
 
         boton6Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton6ComprarActionPerformed(evt);
-                noArticulos[5]=p5;
-                p5++;
-                System.out.println("Click "+p5);
+                if(articulos.get(5).getStock() > 0){
+                    noArticulos[5]=p5;
+                    articulos.get(5).setStock(articulos.get(5).getStock() - 1);
+                    System.out.println("Stock: "+articulos.get(5).getStock());
+                    stock6.setText(Integer.toString(articulos.get(5).getStock()));
+                    p5++;
+                    System.out.println("Click "+p5);
+                }
+                else{
+                    System.out.println("No hay suficiente stock");
+                    OptionPaneStockError();
+                }
             }
         });
 
@@ -658,6 +717,11 @@ public class ClienteUI extends javax.swing.JFrame {
         this.repaint();
         
     }
+
+    public BufferedWriter obtenerBw(){
+        return bw;
+    }
+
     public int [] obtenerProductos(){
         return noArticulos;
     }
@@ -666,42 +730,44 @@ public class ClienteUI extends javax.swing.JFrame {
     }
     private static void estableceConexion(){
         try{
-            cl = new Socket(IP, PUERTO);
-            System.out.println("Conexion con servidor establecida.. recibiendo datos");
+            if(cl == null) {
+                cl = new Socket(IP, PUERTO);
+                System.out.println("Conexion con servidor establecida.. recibiendo datos");
 
-            InputStream is = cl.getInputStream(); //Asociamos el stream con el cliente
-            InputStreamReader isr = new InputStreamReader(is);
-            BufferedReader br = new BufferedReader(isr); //El BufferedReader se usa para leer del cliente al servidor.
+                InputStream is = cl.getInputStream(); //Asociamos el stream con el cliente
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader br = new BufferedReader(isr); //El BufferedReader se usa para leer del cliente al servidor.
 
-            OutputStream os = cl.getOutputStream(); //Asociamos el stream con el cliente
-            OutputStreamWriter osr = new OutputStreamWriter(os);
-            BufferedWriter bw = new BufferedWriter(osr); //El BufferedWriter se usa para escribir del servidor al cliente.
+                OutputStream os = cl.getOutputStream(); //Asociamos el stream con el cliente
+                OutputStreamWriter osr = new OutputStreamWriter(os);
+                bw = new BufferedWriter(osr); //El BufferedWriter se usa para escribir del servidor al cliente.
 
-            //Recibimos el número de artículos disponibles
-            int numeroArticulos = br.read();
-            System.out.println("Número de articulos: "+ numeroArticulos);
+                //Recibimos el número de artículos disponibles
+                int numeroArticulos = br.read();
+                System.out.println("Número de articulos: " + numeroArticulos);
 
 
-            for(int i=0;i<numeroArticulos;i++){
-                //br.readLine();
-                Articulos item = new Articulos(br.readLine(),Double.parseDouble(br.readLine()),br.read(),br.read(),br.readLine() );
-                //Leemos los datos de los articulos
-                //String nombre = br.readLine();//Nombre del item
-                //double precio = Double.parseDouble(br.readLine());//Precio del item
-                //int descuento = br.read();//Descuento del item
-                //int stock = br.read();//Stock del item
-                //String image = br.readLine();//Imagen del item
-                //item.setNombre(nombre);
-                //item.setPrecio(precio);
-                //item.setDescuento(descuento);
-                //item.setStock(stock);
-                //item.setImagen(image);
-                articulos.add(item);
-                //System.out.println(articulos.get(i).getNombre());
-            }
-            //System.out.println(articulos.size());
-            for(int i=0;i<6;i++){
-                System.out.println(articulos.get(i).getNombre());
+                for (int i = 0; i < numeroArticulos; i++) {
+                    //br.readLine();
+                    Articulos item = new Articulos(br.readLine(), Double.parseDouble(br.readLine()), br.read(), br.read(), br.readLine());
+                    //Leemos los datos de los articulos
+                    //String nombre = br.readLine();//Nombre del item
+                    //double precio = Double.parseDouble(br.readLine());//Precio del item
+                    //int descuento = br.read();//Descuento del item
+                    //int stock = br.read();//Stock del item
+                    //String image = br.readLine();//Imagen del item
+                    //item.setNombre(nombre);
+                    //item.setPrecio(precio);
+                    //item.setDescuento(descuento);
+                    //item.setStock(stock);
+                    //item.setImagen(image);
+                    articulos.add(item);
+                    //System.out.println(articulos.get(i).getNombre());
+                }
+                //System.out.println(articulos.size());
+                for (int i = 0; i < 6; i++) {
+                    System.out.println(articulos.get(i).getNombre());
+                }
             }
 
 

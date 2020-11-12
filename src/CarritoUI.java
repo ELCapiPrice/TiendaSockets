@@ -6,6 +6,11 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +23,9 @@ public class CarritoUI extends javax.swing.JFrame {
     static ArrayList<Articulos> articuloss = new ArrayList<>();
     static int [] articulos = new int [6];
     String resumen ;
+    String resumen1 = "";
+    double precioTotalSinDescuento = 0;
+    double precioTotal = 0;
     /*
      En este arreglo guardo las veces que le dan click comparar al producto
      posicion o -> Articulo 1
@@ -28,7 +36,7 @@ public class CarritoUI extends javax.swing.JFrame {
 
     public CarritoUI(int [] arreglo) {
         setResizable(false);
-         setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         initComponents();
         for (int i=0; i<6 ; i++){
             articulos[i]=arreglo[i];
@@ -37,6 +45,23 @@ public class CarritoUI extends javax.swing.JFrame {
         System.out.println("Producto: "+articulos[0]);
         System.out.println("Imagen: "+articuloss.get(0).getImagen());
         //System.out.println("Numero: "+cliente.articulos1.get(0));
+    }
+
+    public void actualizarResumen(int i){
+        if(articuloss.get(i).getDescuento() > 0) {
+            double precioConDescuento = articuloss.get(i).getPrecio() - ((articuloss.get(i).getPrecio()) * (articuloss.get(i).getDescuento() / 100.00));
+            resumen1 = "\nProducto "+(i+1)+": "+articuloss.get(i).getNombre()+"\nPrecio: "+articuloss.get(i).getPrecio()+
+                    "\nPrecio con Descuento: "+ precioConDescuento +"\nDescuento: "+articuloss.get(i).getDescuento()+"%\nStock restante: "+articuloss.get(i).getStock()+
+                    "\nNo Articulos: "+articulos[i]+"\n";
+            precioTotalSinDescuento += articuloss.get(i).getPrecio() * articulos[i];
+            precioTotal += precioConDescuento * articulos[i];
+        } else{
+            resumen1 = "\nProducto "+(i+1)+": "+articuloss.get(i).getNombre()+"\nPrecio: "+articuloss.get(i).getPrecio()+
+                    "\nDescuento: "+articuloss.get(i).getDescuento()+"%\nStock restante: "+articuloss.get(i).getStock()+
+                    "\nNo Articulos: "+articulos[i]+"\n";
+            precioTotalSinDescuento += articuloss.get(i).getPrecio() * articulos[i];
+            precioTotal += articuloss.get(i).getPrecio() * articulos[i];
+        }
     }
 
     /**
@@ -90,50 +115,39 @@ public class CarritoUI extends javax.swing.JFrame {
 
 
   if (articulos[0]!=0){
-                ImageIcon imagen1 = new ImageIcon(getClass().getResource(articuloss.get(0).getImagen()));
-                Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(imgProducto1.getWidth(), imgProducto1.getHeight(), Image.SCALE_SMOOTH));
-                imgProducto1.setIcon(fondo1);
-                this.repaint();
+        ImageIcon imagen1 = new ImageIcon(getClass().getResource(articuloss.get(0).getImagen()));
+        Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(imgProducto1.getWidth(), imgProducto1.getHeight(), Image.SCALE_SMOOTH));
+        imgProducto1.setIcon(fondo1);
+        this.repaint();
+        actualizarResumen(0);
+        System.out.println(resumen1);
+        jTextArea1.append(resumen1);
+        resumen= new StringBuilder().append(resumen).append(resumen1).toString();
+    }
 
-                String resumen1 = "\nProducto 1: "+articuloss.get(0).getNombre()+"\nPrecio: "+articuloss.get(0).getPrecio()+
-                        "\nDescuento: "+articuloss.get(0).getDescuento()+"\nStock: "+articuloss.get(0).getStock()+
-                        "\nNo Articulos: "+articulos[0]+"\n";
-                System.out.println(resumen1);
-                jTextArea1.append(resumen1);
-                resumen= new StringBuilder().append(resumen).append(resumen1).toString();
-            }
-
-
-            if (articulos[1]!=0){
-                ImageIcon imagen2 = new ImageIcon(getClass().getResource(articuloss.get(1).getImagen()));
-                Icon fondo2 = new ImageIcon(imagen2.getImage().getScaledInstance(imgProducto2.getWidth(), imgProducto2.getHeight(), Image.SCALE_SMOOTH));
-                imgProducto2.setIcon(fondo2);
-
-
-                this.repaint();
-
-                String resumen1 = "\nProducto 2: "+articuloss.get(1).getNombre()+"\nPrecio: "+articuloss.get(1).getPrecio()+
-                        "\nDescuento: "+articuloss.get(1).getDescuento()+"\nStock: "+articuloss.get(1).getStock()+
-                        "\nNo Articulos: "+articulos[1]+"\n";
-                System.out.println(resumen1);
-                jTextArea1.append(resumen1);
+    if (articulos[1]!=0){
+        ImageIcon imagen2 = new ImageIcon(getClass().getResource(articuloss.get(1).getImagen()));
+        Icon fondo2 = new ImageIcon(imagen2.getImage().getScaledInstance(imgProducto2.getWidth(), imgProducto2.getHeight(), Image.SCALE_SMOOTH));
+        imgProducto2.setIcon(fondo2);
+        this.repaint();
+        actualizarResumen(1);
+        System.out.println(resumen1);
+        jTextArea1.append(resumen1);
 
 
-            }
+    }
 
 
-if (articulos[2]!=0){
-    ImageIcon imagen3 = new ImageIcon(getClass().getResource(articuloss.get(2).getImagen()));
-    Icon fondo3 = new ImageIcon(imagen3.getImage().getScaledInstance(imgProducto3.getWidth(), imgProducto3.getHeight(), Image.SCALE_SMOOTH));
-    imgProducto3.setIcon(fondo3);
-    this.repaint();
+    if (articulos[2]!=0){
+        ImageIcon imagen3 = new ImageIcon(getClass().getResource(articuloss.get(2).getImagen()));
+        Icon fondo3 = new ImageIcon(imagen3.getImage().getScaledInstance(imgProducto3.getWidth(), imgProducto3.getHeight(), Image.SCALE_SMOOTH));
+        imgProducto3.setIcon(fondo3);
+        this.repaint();
 
-    String resumen1 = "\nProducto 3: "+articuloss.get(2).getNombre()+"\nPrecio: "+articuloss.get(2).getPrecio()+
-            "\nDescuento: "+articuloss.get(2).getDescuento()+"\nStock: "+articuloss.get(2).getStock()+
-            "\nNo Articulos: "+articulos[2]+"\n";
-    System.out.println(resumen1);
-    jTextArea1.append(resumen1);
-}
+        actualizarResumen(2);
+        System.out.println(resumen1);
+        jTextArea1.append(resumen1);
+    }
 
 
     if(articulos[3]!=0){
@@ -142,9 +156,7 @@ if (articulos[2]!=0){
         imgProducto4.setIcon(fondo4);
         this.repaint();
 
-        String resumen1 = "\nProducto 4: "+articuloss.get(3).getNombre()+"\nPrecio: "+articuloss.get(3).getPrecio()+
-                "\nDescuento: "+articuloss.get(3).getDescuento()+"\nStock: "+articuloss.get(3).getStock()+
-                "\nNo Articulos: "+articulos[3]+"\n";
+        actualizarResumen(3);
         System.out.println(resumen1);
         jTextArea1.append(resumen1);
     }
@@ -155,9 +167,7 @@ if (articulos[2]!=0){
         imgProducto5.setIcon(fondo5);
         this.repaint();
 
-        String resumen1 = "\nProducto 5: "+articuloss.get(4).getNombre()+"\nPrecio: "+articuloss.get(4).getPrecio()+
-                "\nDescuento: "+articuloss.get(4).getDescuento()+"\nStock: "+articuloss.get(4).getStock()+
-                "\nNo Articulos: "+articulos[4]+"\n";
+        actualizarResumen(4);
         System.out.println(resumen1);
         jTextArea1.append(resumen1);
     }
@@ -167,20 +177,13 @@ if (articulos[2]!=0){
         Icon fondo6 = new ImageIcon(imagen6.getImage().getScaledInstance(imgProducto6.getWidth(), imgProducto6.getHeight(), Image.SCALE_SMOOTH));
         imgProducto6.setIcon(fondo6);
         this.repaint();
-
-        String resumen1 = "\nProducto 6: "+articuloss.get(5).getNombre()+"\nPrecio: "+articuloss.get(5).getPrecio()+
-                "\nDescuento: "+articuloss.get(5).getDescuento()+"\nStock: "+articuloss.get(5).getStock()+
-                "\nNo Articulos: "+articulos[5]+"\n";
+        actualizarResumen(5);
         System.out.println(resumen1);
         jTextArea1.append(resumen1);
     }
-
-
-
-
-
-
-
+        jTextArea1.append("\n Precio sin descuentos: "+ precioTotalSinDescuento);
+        jTextArea1.append("\n Precio Final: "+ precioTotal);
+        jTextArea1.append("\n\n Usted ahorro: "+ (precioTotalSinDescuento - precioTotal));
 
     }
 
@@ -201,6 +204,7 @@ if (articulos[2]!=0){
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Carrito de Compras");
 
         tituloCarrito.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         tituloCarrito.setText("Su carrito:");
@@ -214,6 +218,15 @@ if (articulos[2]!=0){
         jTextArea1.append(resumen);
 
         btnComprar.setText("Comprar");
+
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComprarActionPerformed(evt);
+                System.out.println("Hola");
+
+            }
+        });
+
 
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -297,6 +310,25 @@ if (articulos[2]!=0){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BufferedWriter bw = CarritoUI.cliente.obtenerBw();
+        try{
+            System.out.println("Enviamos la opcion comprar");
+            bw.write("comprar");//opcion
+            bw.newLine();
+            bw.flush();
+            bw.write(articulos[0]);
+            bw.write(articulos[1]);
+            bw.write(articulos[2]);
+            bw.write(articulos[3]);
+            bw.write(articulos[4]);
+            bw.write(articulos[5]);
+            System.out.println("Opcion comprar enviada");
+        } catch (IOException e) {
+            System.out.println("Error!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);

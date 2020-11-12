@@ -73,8 +73,41 @@ public class TienditaSocketsServer {
           bw.newLine();
           bw.flush();
         }
-        
-        System.out.println("Hola desde servidor ");
+
+        System.out.println("Esperamos respuesta del cliente... ");
+        String opcion = br.readLine();
+        //System.out.println(opcion);
+        //System.out.println("Respuesta recibida");
+        if (opcion.equals("comprar")){
+          System.out.println("Compraron articulos!");
+          for(int i =0;i<6;i++){
+            int itemsComprados = br.read();
+            System.out.println(itemsComprados);
+            items.get(i).setStock( items.get(i).getStock() - itemsComprados);
+          }
+          /*
+          int itemsComprados0 = br.read();
+          System.out.println(itemsComprados0);
+          item1.setStock( item1.getStock() - itemsComprados0);
+          int itemsComprados1 = br.read();
+          System.out.println(itemsComprados1);
+          item2.setStock( item2.getStock() - itemsComprados1);
+          int itemsComprados2 = br.read();
+          System.out.println(itemsComprados2);
+          item3.setStock( item3.getStock() - itemsComprados2);
+          int itemsComprados3 = br.read();
+          System.out.println(itemsComprados3);
+          item4.setStock( item4.getStock() - itemsComprados3);
+          int itemsComprados4 = br.read();
+          System.out.println(itemsComprados4);
+          item5.setStock( item5.getStock() - itemsComprados4);
+          int itemsComprados5 = br.read();
+          System.out.println(itemsComprados5);
+          item6.setStock( item6.getStock() - itemsComprados5);
+*/
+        }
+
+
 
       } //FIN FOREVER
     } catch (IOException e) {
