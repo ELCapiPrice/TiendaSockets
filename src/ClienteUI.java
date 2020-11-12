@@ -26,7 +26,7 @@ public class ClienteUI extends javax.swing.JFrame {
     public HashMap <Integer, Integer> NumeroProductos = new HashMap<Integer, Integer>();
     public int [] noArticulos = new int[6];
     public  ArrayList<Integer> articulos1 = new ArrayList<>();
-    int  productos=1,p2=1,p3=1,p4=1,p5=1,p1=1,p6=1;
+    int  p0=1,p2=1,p3=1,p4=1,p5=1,p1=1,p6=1;
 
     /**
      * Creates new form ClienteUI
@@ -147,7 +147,8 @@ public class ClienteUI extends javax.swing.JFrame {
 
         titulo6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         titulo6.setText("Jugo de Tomate");
-
+//"$ "+ Double.toString(articulos.get(0).getPrecio())
+        //Integer.toString(articulos.get(0).getStock()
         stock1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         stock1.setText(Integer.toString(articulos.get(0).getStock()));
 
@@ -169,12 +170,9 @@ public class ClienteUI extends javax.swing.JFrame {
         boton1Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton1ComprarActionPerformed(evt);
-
-
-                noArticulos[0]=productos;
-                articulos1.add(0,productos);
-                productos++;
-                System.out.println("CLICK "+ noArticulos[0]);
+                noArticulos[0]=p0;
+                System.out.println("Click "+p0);
+                p0++;
 
             }
         });
@@ -182,11 +180,9 @@ public class ClienteUI extends javax.swing.JFrame {
         boton2Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton2ComprarActionPerformed(evt);
-
                 noArticulos[1]=p1;
-                articulos1.add(1,productos);
                 p1++;
-                System.out.println("CLICK "+ noArticulos[1]);
+                System.out.println("Click "+p1);
             }
         });
 
@@ -194,19 +190,17 @@ public class ClienteUI extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton3ComprarActionPerformed(evt);
                 noArticulos[2]=p2;
-                articulos1.add(2,productos);
                 p2++;
-                System.out.println("CLICK "+ noArticulos[2]);
+                System.out.println("Click "+p2);
             }
         });
 
         boton4Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton4ComprarActionPerformed(evt);
-
                 noArticulos[3]=p3;
                 p3++;
-                System.out.println("CLICK "+ noArticulos[3]);
+                System.out.println("Click "+p3);
             }
         });
 
@@ -215,28 +209,22 @@ public class ClienteUI extends javax.swing.JFrame {
                 boton5ComprarActionPerformed(evt);
                 noArticulos[4]=p4;
                 p4++;
-                System.out.println("CLICK xx"+ noArticulos[4]);
+                System.out.println("Click "+p4);
             }
         });
 
         boton6Comprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton6ComprarActionPerformed(evt);
-
                 noArticulos[5]=p5;
                 p5++;
-                System.out.println("CLICK "+ noArticulos[5]);
+                System.out.println("Click "+p5);
             }
         });
 
         botonCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCarritoActionPerformed(evt);
-
-
-
-
-
             }
         });
 
@@ -252,17 +240,18 @@ public class ClienteUI extends javax.swing.JFrame {
 
         jLabel13.setText("Precio: ");
 
-        precio1.setText("$ " +Double.toString(articulos.get(0).getStock()));
+//  precio1.setText("$ "+ Double.toString(articulos.get(0).getPrecio()));
+        precio1.setText("$ "+ Double.toString(articulos.get(0).getPrecio()));
 
-        precio2.setText("$ " +Double.toString(articulos.get(1).getStock()));
+        precio2.setText("$ "+ Double.toString(articulos.get(1).getPrecio()));
 
-        precio3.setText("$ " +Double.toString(articulos.get(2).getStock()));
+        precio3.setText("$ "+ Double.toString(articulos.get(2).getPrecio()));
 
-        precio4.setText("$ " +Double.toString(articulos.get(3).getStock()));
+        precio4.setText("$ "+ Double.toString(articulos.get(3).getPrecio()));
 
-        precio5.setText("$ " +Double.toString(articulos.get(4).getStock()));
+        precio5.setText("$ "+ Double.toString(articulos.get(4).getPrecio()));
 
-        precio6.setText("$ " +Double.toString(articulos.get(5).getStock()));
+        precio6.setText("$ "+ Double.toString(articulos.get(5).getPrecio()));
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -326,16 +315,16 @@ public class ClienteUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(precio5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(precio2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(stock2)
-                                .addGap(43, 43, 43)
-                                .addComponent(boton3Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(precio2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                                .addGap(48, 48, 48)
+                                .addComponent(boton2Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(titulo3)
                             .addComponent(titulo6)
@@ -346,12 +335,6 @@ public class ClienteUI extends javax.swing.JFrame {
                                     .addComponent(stock6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                                     .addComponent(boton6Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panelLayout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(stock3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(boton2Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(imagen3Producto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(imagen6Producto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(panelLayout.createSequentialGroup()
@@ -361,8 +344,14 @@ public class ClienteUI extends javax.swing.JFrame {
                             .addGroup(panelLayout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(precio6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(46, 46, 46))
+                                .addComponent(precio6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stock3)
+                                .addGap(30, 30, 30)
+                                .addComponent(boton3Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addComponent(EtiquetaNombreEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -388,37 +377,33 @@ public class ClienteUI extends javax.swing.JFrame {
                     .addComponent(imagen1Producto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(boton3Comprar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(titulo2)
-                            .addComponent(titulo1)
-                            .addComponent(titulo3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(precio1))
-                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel9)
-                                .addComponent(precio2))
-                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel10)
-                                .addComponent(precio3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(stock1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(stock2)
-                                .addComponent(stock3))
-                            .addComponent(boton2Comprar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boton1Comprar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(titulo2)
+                    .addComponent(titulo1)
+                    .addComponent(titulo3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel8)
+                        .addComponent(precio1))
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(precio2))
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10)
+                        .addComponent(precio3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(stock1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel3)
+                        .addComponent(stock2)
+                        .addComponent(stock3))
+                    .addComponent(boton2Comprar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton1Comprar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton3Comprar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imagen6Producto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -506,7 +491,7 @@ public class ClienteUI extends javax.swing.JFrame {
     private void botonCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCarritoActionPerformed
 
        // this.dispose();
-        CarritoUI carrito= new CarritoUI();
+        CarritoUI carrito= new CarritoUI(noArticulos);
         carrito.setVisible(true);
 
     }//GEN-LAST:event_botonCarritoActionPerformed

@@ -15,15 +15,18 @@ public class CarritoUI extends javax.swing.JFrame {
     static ClienteUI  cliente = new ClienteUI();
     static ArrayList<Articulos> articuloss = new ArrayList<>();
     static ArrayList<Integer> articulos1 = new ArrayList<>();
-    static int [] articulos;
+    static int [] articulos = new int [6];
 
-    public CarritoUI() {
+    public CarritoUI(int [] arreglo) {
         setResizable(false);
          setLocationRelativeTo(null);
         initComponents();
         inicializar();
-        articulos= cliente.obtenerProductos();
-        System.out.println("Producto: "+articulos[1]);
+        for (int i=0; i<6 ; i++){
+            articulos[i]=arreglo[i];
+        }
+
+        System.out.println("Producto: "+articulos[0]);
         System.out.println("Imagen: "+articuloss.get(0).getImagen());
         //System.out.println("Numero: "+cliente.articulos1.get(0));
     }
@@ -37,6 +40,7 @@ public class CarritoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void inicializar(){
         articuloss= cliente.obtenerArticulos();
+        //articulos= cliente.obtenerProductos();
     }
 
     private void initComponents() {
@@ -184,7 +188,7 @@ public class CarritoUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-          /* Create and display the form */
+          /* Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CarritoUI().setVisible(true);
@@ -192,6 +196,8 @@ public class CarritoUI extends javax.swing.JFrame {
 
 
         });
+        */
+
 
 
     }
