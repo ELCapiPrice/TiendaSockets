@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -14,18 +16,24 @@ public class CarritoUI extends javax.swing.JFrame {
 
     static ClienteUI  cliente = new ClienteUI();
     static ArrayList<Articulos> articuloss = new ArrayList<>();
-    static ArrayList<Integer> articulos1 = new ArrayList<>();
     static int [] articulos = new int [6];
+    String resumen ;
+    /*
+     En este arreglo guardo las veces que le dan click comparar al producto
+     posicion o -> Articulo 1
+     posicion 1 -> Articulo 2
+
+
+     */
 
     public CarritoUI(int [] arreglo) {
         setResizable(false);
          setLocationRelativeTo(null);
         initComponents();
-        inicializar();
         for (int i=0; i<6 ; i++){
             articulos[i]=arreglo[i];
         }
-
+        inicializar();
         System.out.println("Producto: "+articulos[0]);
         System.out.println("Imagen: "+articuloss.get(0).getImagen());
         //System.out.println("Numero: "+cliente.articulos1.get(0));
@@ -40,7 +48,140 @@ public class CarritoUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void inicializar(){
         articuloss= cliente.obtenerArticulos();
-        //articulos= cliente.obtenerProductos();
+        System.out.println("Click en boton1: "+articulos[0]);
+/*
+        for (int i=0; i<articulos.length; i++){
+            if (articulos[i]!=0){
+
+                ImageIcon imagen1 = new ImageIcon(getClass().getResource(articuloss.get(0).getImagen()));
+                Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(imgProducto1.getWidth(), imgProducto1.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto1.setIcon(fondo1);
+                this.repaint();
+
+                ImageIcon imagen2 = new ImageIcon(getClass().getResource(articuloss.get(1).getImagen()));
+                Icon fondo2 = new ImageIcon(imagen2.getImage().getScaledInstance(imgProducto2.getWidth(), imgProducto2.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto2.setIcon(fondo2);
+                this.repaint();
+
+                ImageIcon imagen3 = new ImageIcon(getClass().getResource(articuloss.get(2).getImagen()));
+                Icon fondo3 = new ImageIcon(imagen3.getImage().getScaledInstance(imgProducto3.getWidth(), imgProducto3.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto3.setIcon(fondo3);
+                this.repaint();
+
+                ImageIcon imagen4 = new ImageIcon(getClass().getResource(articuloss.get(3).getImagen()));
+                Icon fondo4 = new ImageIcon(imagen4.getImage().getScaledInstance(imgProducto4.getWidth(), imgProducto4.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto4.setIcon(fondo4);
+                this.repaint();
+
+                ImageIcon imagen5 = new ImageIcon(getClass().getResource(articuloss.get(4).getImagen()));
+                Icon fondo5 = new ImageIcon(imagen5.getImage().getScaledInstance(imgProducto5.getWidth(), imgProducto5.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto5.setIcon(fondo5);
+                this.repaint();
+
+                ImageIcon imagen6 = new ImageIcon(getClass().getResource(articuloss.get(5).getImagen()));
+                Icon fondo6 = new ImageIcon(imagen6.getImage().getScaledInstance(imgProducto6.getWidth(), imgProducto6.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto6.setIcon(fondo6);
+                this.repaint();
+
+            }
+        }
+
+*/
+
+
+  if (articulos[0]!=0){
+                ImageIcon imagen1 = new ImageIcon(getClass().getResource(articuloss.get(0).getImagen()));
+                Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(imgProducto1.getWidth(), imgProducto1.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto1.setIcon(fondo1);
+                this.repaint();
+
+                String resumen1 = "\nProducto 1: "+articuloss.get(0).getNombre()+"\nPrecio: "+articuloss.get(0).getPrecio()+
+                        "\nDescuento: "+articuloss.get(0).getDescuento()+"\nStock: "+articuloss.get(0).getStock()+
+                        "\nNo Articulos: "+articulos[0]+"\n";
+                System.out.println(resumen1);
+                jTextArea1.append(resumen1);
+                resumen= new StringBuilder().append(resumen).append(resumen1).toString();
+            }
+
+
+            if (articulos[1]!=0){
+                ImageIcon imagen2 = new ImageIcon(getClass().getResource(articuloss.get(1).getImagen()));
+                Icon fondo2 = new ImageIcon(imagen2.getImage().getScaledInstance(imgProducto2.getWidth(), imgProducto2.getHeight(), Image.SCALE_SMOOTH));
+                imgProducto2.setIcon(fondo2);
+
+
+                this.repaint();
+
+                String resumen1 = "\nProducto 2: "+articuloss.get(1).getNombre()+"\nPrecio: "+articuloss.get(1).getPrecio()+
+                        "\nDescuento: "+articuloss.get(1).getDescuento()+"\nStock: "+articuloss.get(1).getStock()+
+                        "\nNo Articulos: "+articulos[1]+"\n";
+                System.out.println(resumen1);
+                jTextArea1.append(resumen1);
+
+
+            }
+
+
+if (articulos[2]!=0){
+    ImageIcon imagen3 = new ImageIcon(getClass().getResource(articuloss.get(2).getImagen()));
+    Icon fondo3 = new ImageIcon(imagen3.getImage().getScaledInstance(imgProducto3.getWidth(), imgProducto3.getHeight(), Image.SCALE_SMOOTH));
+    imgProducto3.setIcon(fondo3);
+    this.repaint();
+
+    String resumen1 = "\nProducto 3: "+articuloss.get(2).getNombre()+"\nPrecio: "+articuloss.get(2).getPrecio()+
+            "\nDescuento: "+articuloss.get(2).getDescuento()+"\nStock: "+articuloss.get(2).getStock()+
+            "\nNo Articulos: "+articulos[2]+"\n";
+    System.out.println(resumen1);
+    jTextArea1.append(resumen1);
+}
+
+
+    if(articulos[3]!=0){
+        ImageIcon imagen4 = new ImageIcon(getClass().getResource(articuloss.get(3).getImagen()));
+        Icon fondo4 = new ImageIcon(imagen4.getImage().getScaledInstance(imgProducto4.getWidth(), imgProducto4.getHeight(), Image.SCALE_SMOOTH));
+        imgProducto4.setIcon(fondo4);
+        this.repaint();
+
+        String resumen1 = "\nProducto 4: "+articuloss.get(3).getNombre()+"\nPrecio: "+articuloss.get(3).getPrecio()+
+                "\nDescuento: "+articuloss.get(3).getDescuento()+"\nStock: "+articuloss.get(3).getStock()+
+                "\nNo Articulos: "+articulos[3]+"\n";
+        System.out.println(resumen1);
+        jTextArea1.append(resumen1);
+    }
+
+    if(articulos[4]!=0){
+        ImageIcon imagen5 = new ImageIcon(getClass().getResource(articuloss.get(4).getImagen()));
+        Icon fondo5 = new ImageIcon(imagen5.getImage().getScaledInstance(imgProducto5.getWidth(), imgProducto5.getHeight(), Image.SCALE_SMOOTH));
+        imgProducto5.setIcon(fondo5);
+        this.repaint();
+
+        String resumen1 = "\nProducto 5: "+articuloss.get(4).getNombre()+"\nPrecio: "+articuloss.get(4).getPrecio()+
+                "\nDescuento: "+articuloss.get(4).getDescuento()+"\nStock: "+articuloss.get(4).getStock()+
+                "\nNo Articulos: "+articulos[4]+"\n";
+        System.out.println(resumen1);
+        jTextArea1.append(resumen1);
+    }
+
+    if (articulos[5]!=0){
+        ImageIcon imagen6 = new ImageIcon(getClass().getResource(articuloss.get(5).getImagen()));
+        Icon fondo6 = new ImageIcon(imagen6.getImage().getScaledInstance(imgProducto6.getWidth(), imgProducto6.getHeight(), Image.SCALE_SMOOTH));
+        imgProducto6.setIcon(fondo6);
+        this.repaint();
+
+        String resumen1 = "\nProducto 6: "+articuloss.get(5).getNombre()+"\nPrecio: "+articuloss.get(5).getPrecio()+
+                "\nDescuento: "+articuloss.get(5).getDescuento()+"\nStock: "+articuloss.get(5).getStock()+
+                "\nNo Articulos: "+articulos[5]+"\n";
+        System.out.println(resumen1);
+        jTextArea1.append(resumen1);
+    }
+
+
+
+
+
+
+
+
     }
 
     private void initComponents() {
@@ -70,7 +211,7 @@ public class CarritoUI extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
-        jTextArea1.append("Holaaaa");
+        jTextArea1.append(resumen);
 
         btnComprar.setText("Comprar");
 
