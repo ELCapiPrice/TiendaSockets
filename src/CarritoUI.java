@@ -26,6 +26,7 @@ public class CarritoUI extends javax.swing.JFrame {
     String resumen1 = "";
     double precioTotalSinDescuento = 0;
     double precioTotal = 0;
+    BufferedWriter bw;
     /*
      En este arreglo guardo las veces que le dan click comparar al producto
      posicion o -> Articulo 1
@@ -38,13 +39,14 @@ public class CarritoUI extends javax.swing.JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         initComponents();
+        inicia(arreglo);
+        inicializar();
+
+    }
+    private void  inicia(int arreglo []){
         for (int i=0; i<6 ; i++){
             articulos[i]=arreglo[i];
         }
-        inicializar();
-        System.out.println("Producto: "+articulos[0]);
-        System.out.println("Imagen: "+articuloss.get(0).getImagen());
-        //System.out.println("Numero: "+cliente.articulos1.get(0));
     }
 
     public void actualizarResumen(int i){
@@ -72,6 +74,8 @@ public class CarritoUI extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void inicializar(){
+
+
         articuloss= cliente.obtenerArticulos();
         System.out.println("Click en boton1: "+articulos[0]);
 /*
@@ -221,8 +225,9 @@ public class CarritoUI extends javax.swing.JFrame {
 
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnComprarActionPerformed(evt);
+                btnComprarActionPerformed();
                 System.out.println("Hola");
+                JOptionPane.showMessageDialog(null, "Gacias Por Su Compra");
 
             }
         });
@@ -231,7 +236,10 @@ public class CarritoUI extends javax.swing.JFrame {
         jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                    dispose();
+                    inicializar();
+                System.out.println("Holaaa");
+               //reset();
             }
 
 
@@ -311,8 +319,8 @@ public class CarritoUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        BufferedWriter bw = CarritoUI.cliente.obtenerBw();
+    private void btnComprarActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
+        bw = CarritoUI.cliente.obtenerBw();
         try{
             System.out.println("Enviamos la opcion comprar");
             bw.write("comprar");//opcion
@@ -329,6 +337,14 @@ public class CarritoUI extends javax.swing.JFrame {
             System.out.println("Error!");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private  void reset(){
+        resumen1=null;
+        jTextArea1.append(resumen1);
+        imgProducto1.removeAll();
+        inicializar();
+
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.exit(0);

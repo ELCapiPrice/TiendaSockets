@@ -23,11 +23,8 @@ public class ClienteUI extends javax.swing.JFrame {
     static final int PUERTO = 25001;
     static Socket cl = null;
     static ArrayList<Articulos> articulos = new ArrayList<>();
-    public HashMap <Integer, Integer> NumeroProductos = new HashMap<Integer, Integer>();
     public int [] noArticulos = new int[6];
-    public  ArrayList<Integer> articulos1 = new ArrayList<>();
     int  p0=1,p2=1,p3=1,p4=1,p5=1,p1=1,p6=1;
-    int noStock0,noStock1,noStock2,noStock3,noStock4,noStock5;
     static BufferedWriter bw = null;
 
     static JFrame f;
@@ -552,6 +549,7 @@ public class ClienteUI extends javax.swing.JFrame {
        // this.dispose();
         CarritoUI carrito= new CarritoUI(noArticulos);
         carrito.setVisible(true);
+       // this.dispose();
 
     }//GEN-LAST:event_botonCarritoActionPerformed
 
@@ -710,11 +708,15 @@ public class ClienteUI extends javax.swing.JFrame {
         Icon fondo13 = new ImageIcon(imagen13.getImage().getScaledInstance(botonCarrito.getWidth(), botonCarrito.getHeight(), Image.SCALE_SMOOTH));
         botonCarrito.setIcon(fondo13);
         this.repaint();
-        
+
+
         ImageIcon imagen14 = new ImageIcon(getClass().getResource("/imagenes/update.png"));
         Icon fondo14 = new ImageIcon(imagen14.getImage().getScaledInstance(botonActualizar.getWidth(), botonActualizar.getHeight(), Image.SCALE_SMOOTH));
-        botonActualizar.setIcon(fondo14);
+        //botonActualizar.setIcon(fondo14);
+        botonActualizar.setDefaultCapable(true);
         this.repaint();
+
+
         
     }
 
