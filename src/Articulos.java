@@ -12,12 +12,7 @@ public class Articulos {
     this.stock = stock;
     this.descuento = descuento; //En porcentaje 5% 10% 50% 90%
     this.imagen = imagen; //URL
-    //if(descuento>0){
-    //  double descuentoDecimal = descuento / 100.00;
-    //  this.precio = precio - (precio*descuentoDecimal);
-    //} else{
-      this.precio = precio;
-    //}
+    this.precio = precio;
   }
 
   public void setNombre(String nombre){
@@ -39,8 +34,6 @@ public class Articulos {
     return this.stock;
   }
   public void setDescuento(int descuento){
-    //double descuentoDecimal = descuento / 100.00;
-    //this.precio = precio - (precio*descuentoDecimal);
     this.descuento = descuento;
   }
   public int getDescuento(){

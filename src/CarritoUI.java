@@ -226,9 +226,8 @@ public class CarritoUI extends javax.swing.JFrame {
         btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComprarActionPerformed();
-                System.out.println("Hola");
-                JOptionPane.showMessageDialog(null, "Gacias Por Su Compra");
-
+                //System.out.println("Hola");
+                JOptionPane.showMessageDialog(null, "Gracias Por Su Compra");
             }
         });
 
@@ -319,7 +318,7 @@ public class CarritoUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnComprarActionPerformed() {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnComprarActionPerformed() {
         bw = CarritoUI.cliente.obtenerBw();
         try{
             System.out.println("Enviamos la opcion comprar");
@@ -336,10 +335,10 @@ public class CarritoUI extends javax.swing.JFrame {
         } catch (IOException e) {
             System.out.println("Error!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     private  void reset(){
-        resumen1=null;
+        resumen1="";
         jTextArea1.append(resumen1);
         imgProducto1.removeAll();
         inicializar();

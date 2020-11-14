@@ -19,7 +19,6 @@ public class TienditaSocketsServer {
       Articulos item2 = new Articulos("La biblia del tomate",1000,26,20,"/imagenes/LaBibliaDelTomate.jpg");
       Articulos item3 = new Articulos("Tomate en polvo para rebozar 1kg",80,84,0,"/imagenes/TomateEnPolvoCocinar.jpg");
       Articulos item4 = new Articulos("Tomate en polvo para gelatinas 1kg",50,26,0,"/imagenes/TomateEnPolvoGelatina.jpg");
-      //Articulos item7 = new Articulos("Tomate frito triturado 1kg",75,13,0,"/imagenes/TomateEnteroPelado.jpg");
       Articulos item5 = new Articulos("Tomate entero pelado 250gr",15,55,0,"/imagenes/TomateEnteroPelado.jpg");
       Articulos item6 = new Articulos("Zumo de tomate 2L pack de 3",300,77,50,"/imagenes/ZumoDeTomatejpg.jpg");
 
@@ -64,11 +63,7 @@ public class TienditaSocketsServer {
           bw.newLine();
           bw.flush();
           bw.write(items.get(i).getStock());//Stock del item
-          //bw.newLine();
-          //bw.flush();
           bw.write(items.get(i).getDescuento());//Descuento del item
-          //bw.newLine();
-          //bw.flush();
           bw.write(items.get(i).getImagen());//Imagen del item
           bw.newLine();
           bw.flush();
